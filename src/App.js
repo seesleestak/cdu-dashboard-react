@@ -93,6 +93,10 @@ function Frame({ children }) {
   );
 }
 
+function Calendar() {
+  return <Container className="hd">Calendar</Container>;
+}
+
 class Weather extends React.Component {
   state = {
     data: {
@@ -156,11 +160,11 @@ class Weather extends React.Component {
                 <div className="weather-item">current</div>
                 <Container>
                   <Row center="xs">
-                    <Col xs={12} sm={4}>
+                    <Col xs={12} sm={3} style={{ marginBottom: "10px" }}>
                       {Math.round(current.main.temp_min)} &deg;F
                       <div className="weather-item">lo</div>
                     </Col>
-                    <Col xs={12} sm={4}>
+                    <Col xs={12} sm={3}>
                       {Math.round(current.main.temp_max)} &deg;F
                       <div className="weather-item">hi</div>
                     </Col>
@@ -200,6 +204,7 @@ function App() {
           <Route path="/" exact component={Index} />
           <Route path="/todo" exact component={Todo} />
           <Route path="/weather" exact component={Weather} />
+          <Route path="/calendar" exact component={Calendar} />
         </Frame>
       </Router>
     </div>

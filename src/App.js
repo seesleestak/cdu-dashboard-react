@@ -113,7 +113,7 @@ class Weather extends React.Component {
 
     const { REACT_APP_OPEN_WEATHER_KEY } = process.env;
     if (REACT_APP_OPEN_WEATHER_KEY) {
-      const callRes = Promise.all([
+      Promise.all([
         axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?zip=91367,us&APPID=${REACT_APP_OPEN_WEATHER_KEY}&units=imperial`
         ),

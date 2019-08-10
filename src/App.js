@@ -14,6 +14,8 @@ function Dash() {
 }
 
 function Temp({ value, size }) {
+  const rounded = Math.round(value)
+
   function getTempClass(value) {
     if (value >= 90) {
       return 'red'
@@ -28,8 +30,8 @@ function Temp({ value, size }) {
   }
 
   return (
-    <span className={getTempClass(value)} style={{ fontSize: `${size}px` }}>
-      {Math.round(value)}
+    <span className={getTempClass(rounded)} style={{ fontSize: `${size}px` }}>
+      {rounded}
       <span style={{ fontSize: `${size - 6}px` }}>&deg;F</span>
     </span>
   );
@@ -70,7 +72,7 @@ function Timeline({ timeArr }) {
 
 function MenuItem({ name }) {
   return (
-    <Link to={name} className="item">
+    <Link to={name} className="uppercase">
       {name}
     </Link>
   );
@@ -79,14 +81,14 @@ function MenuItem({ name }) {
 class Time extends React.Component {
   state = {
     time: moment().format("h:mm:ss A"),
-    date: moment().format("dddd, MMMM Do YYYY")
+    date: moment().format("ddd, MMM D YYYY")
   };
 
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({
         time: moment().format("h:mm:ss A"),
-        date: moment().format("dddd, MMMM Do YYYY")
+        date: moment().format("ddd, MMM D YYYY")
       });
     }, 1000);
   }
@@ -97,7 +99,7 @@ class Time extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="uppercase">
         <Container noPadding margin="20px 20px 5px 20px">
           {this.state.date}
         </Container>

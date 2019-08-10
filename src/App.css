@@ -1,6 +1,7 @@
 .hd {
   text-transform: uppercase;
   font-size: 24px;
+  padding-top: 8px;
 }
 
 .right-col {
@@ -28,6 +29,7 @@ a {
 
 .frame {
   margin: 12px;
+  padding: 12px;
   border: 1px solid white;
   border-radius: 2px;
   min-height: 300px;
@@ -37,6 +39,33 @@ a {
   font-size: 12px;
 }
 
-.temp {
-  font-size: 22px;
+.weather-hd {
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: right;
+  border-bottom: 1px dashed white;
+}
+
+.tl-container {
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.tl {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 0px solid white;
+  border-radius: 2px;
+  position: absolute;
+}
+
+.tl-pnt {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: white;
 }

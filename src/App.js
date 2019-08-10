@@ -1,14 +1,58 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-flexbox-grid";
 import Container from "@hixme-ui/container";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
+import groupBy from "lodash/groupBy";
 
 import "./App.css";
 
 function Dash() {
   return <span className="dash">&mdash;</span>;
+}
+
+function Temp({ value, size }) {
+  return (
+    <span style={{ fontSize: `${size}px` }}>
+      {Math.round(value)}
+      <span style={{ fontSize: `${size - 6}px` }}>&deg;F</span>
+    </span>
+  );
+}
+Temp.propTypes = {
+  size: PropTypes.number
+};
+Temp.defaultProps = {
+  size: 18
+};
+
+function Timeline({ timeArr }) {
+  return (
+    <div style={{ padding: "28px 10px" }}>
+      <div className="tl-container" style={{ height: "unset" }}>
+        {timeArr.map(time => {
+          return <Temp size={16} value={time.main.temp} />;
+        })}
+      </div>
+      <div className="tl-container">
+        <span className="tl" />
+        {timeArr.map(time => {
+          return <span className="tl-pnt" />;
+        })}
+      </div>
+      <div className="tl-container" style={{ height: "unset" }}>
+        {timeArr.map(time => {
+          return (
+            <span className="weather-item">
+              {moment(time.dt_converted_txt).format("h A")}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function MenuItem({ name }) {
@@ -86,7 +130,7 @@ function Todo() {
 function Frame({ children }) {
   return (
     <Row center="xs">
-      <Col xs={12} sm={10} md={8} lg={6}>
+      <Col xs={12} sm={10} md={8} lg={5}>
         <div className="frame">{children}</div>
       </Col>
     </Row>
@@ -106,7 +150,7 @@ class Weather extends React.Component {
     loading: false
   };
 
-  componentDidMount() {
+  getWeather() {
     this.setState({
       loading: true
     });
@@ -121,15 +165,33 @@ class Weather extends React.Component {
           `https://api.openweathermap.org/data/2.5/weather?zip=91367,us&APPID=${REACT_APP_OPEN_WEATHER_KEY}&units=imperial`
         )
       ]).then(res => {
+        const forecast = res[0].data;
+        const convertedList = forecast.list.map(time => {
+          return {
+            ...time,
+            dt_converted_date: moment.unix(time.dt).format("YYYY-MM-DD"),
+            dt_converted_txt: moment.unix(time.dt).format()
+          };
+        });
+        const groupedList = groupBy(convertedList, "dt_converted_date");
+
         this.setState({
           data: {
-            forecast: res[0].data,
+            forecast: { ...forecast, list: convertedList, groupedList },
             current: res[1].data
           },
           loading: false
         });
       });
     }
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(this.getWeather(), 600000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {
@@ -154,41 +216,45 @@ class Weather extends React.Component {
             )}
             {current.main && (
               <div>
-                <Container className="temp" padding="20px 20px 0 20px">
-                  {Math.round(current.main.temp)} &deg;F
+                <Container padding="20px 20px 0 20px">
+                  <Temp size={22} value={current.main.temp} />
                 </Container>
                 <div className="weather-item">current</div>
                 <Container>
                   <Row center="xs">
-                    <Col xs={12} sm={3} style={{ marginBottom: "10px" }}>
-                      {Math.round(current.main.temp_min)} &deg;F
+                    <Col xs={12} sm={3} style={{ paddingBottom: "10px" }}>
+                      <Temp size={18} value={current.main.temp_min} />
                       <div className="weather-item">lo</div>
                     </Col>
                     <Col xs={12} sm={3}>
-                      {Math.round(current.main.temp_max)} &deg;F
+                      <Temp size={18} value={current.main.temp_max} />
                       <div className="weather-item">hi</div>
                     </Col>
                   </Row>
                 </Container>
               </div>
             )}
-            {/*
-                  <Container noPadding margin="20px 0">
-                    <Row>
-                    {data.list &&
-                        data.city &&
-                        data.list.map(item => {
-                          return (
-                            <Col xs={12} sm={4} md={3} key={item.dt}>
-                            <div className="weather-item">
-                                {moment(item.dt, "x").format("h:mm A")}
-                            </div>
-                            </Col>
-                          );
-                        })}
-                          </Row>
-                        </Container>
-                        */}
+            <Container noPadding margin="0 0 20px">
+              {forecast.groupedList &&
+                Object.keys(forecast.groupedList).map((date, dateIndex) => {
+                  return (
+                    <Row
+                      start="xs"
+                      key={date}
+                      style={{ marginTop: dateIndex === 0 ? "0" : "14px" }}
+                    >
+                      <Col xs={12}>
+                        <span className="weather-hd">
+                          {moment(date).format("dddd")}
+                        </span>
+                      </Col>
+                      <Col xs={12}>
+                        <Timeline timeArr={forecast.groupedList[date]} />
+                      </Col>
+                    </Row>
+                  );
+                })}
+            </Container>
           </div>
         )}
       </div>

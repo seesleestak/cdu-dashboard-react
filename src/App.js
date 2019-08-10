@@ -14,8 +14,21 @@ function Dash() {
 }
 
 function Temp({ value, size }) {
+  function getTempClass(value) {
+    if (value >= 90) {
+      return 'red'
+    } else if (value >= 80) {
+      return 'yellow'
+    } else if (value >= 68) {
+      return 'green'
+    } else if (value >= 45) {
+      return 'blue'
+    }
+    return ''
+  }
+
   return (
-    <span style={{ fontSize: `${size}px` }}>
+    <span className={getTempClass(value)} style={{ fontSize: `${size}px` }}>
       {Math.round(value)}
       <span style={{ fontSize: `${size - 6}px` }}>&deg;F</span>
     </span>

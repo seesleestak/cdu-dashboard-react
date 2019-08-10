@@ -33,19 +33,19 @@ function Timeline({ timeArr }) {
     <div style={{ padding: "28px 10px" }}>
       <div className="tl-container" style={{ height: "unset" }}>
         {timeArr.map(time => {
-          return <Temp size={16} value={time.main.temp} />;
+          return <Temp size={16} value={time.main.temp} key={time.dt} />;
         })}
       </div>
       <div className="tl-container">
         <span className="tl" />
         {timeArr.map(time => {
-          return <span className="tl-pnt" />;
+          return <span className="tl-pnt" key={time.dt} />;
         })}
       </div>
       <div className="tl-container" style={{ height: "unset" }}>
         {timeArr.map(time => {
           return (
-            <span className="weather-item">
+            <span className="weather-item" key={time.dt}>
               {moment(time.dt_converted_txt).format("h A")}
             </span>
           );

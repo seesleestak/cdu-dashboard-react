@@ -32,6 +32,21 @@
   text-transform: uppercase;
 }
 
+.complete {
+  text-decoration: line-through;
+}
+
+input {
+  background-color: #121213;
+  color: white;
+  font-family: 'B612', sans-serif;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px dashed white;
+  text-transform: uppercase;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -47,6 +62,7 @@ a {
   border: 1px solid white;
   border-radius: 2px;
   min-height: 300px;
+  display: flex;
 }
 
 .weather-item {
@@ -82,4 +98,19 @@ a {
   width: 8px;
   border-radius: 50%;
   background-color: white;
+}
+
+.pg { 
+  display: flex; 
+  flex-direction: column;
+  width: 100%;
+}
+
+.todo-list {
+  height: 250px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 2px;
 }

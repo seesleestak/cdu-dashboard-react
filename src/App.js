@@ -22,7 +22,8 @@ function Page({ children, ...rest }) {
 }
 
 function Temp({ value, size }) {
-  const rounded = Math.round(value);
+  const formatted = value.toFixed(1);
+  const num = formatted.split(".");
 
   function getTempClass(value) {
     if (value >= 90) {
@@ -38,9 +39,9 @@ function Temp({ value, size }) {
   }
 
   return (
-    <span className={getTempClass(rounded)} style={{ fontSize: `${size}px` }}>
-      {rounded}
-      <span style={{ fontSize: `${size - 6}px` }}>&deg;F</span>
+    <span className={getTempClass(formatted)} style={{ fontSize: `${size}px` }}>
+      {num[0]}
+      <span style={{ fontSize: `${size - 6}px` }}>.{num[1]}</span>
     </span>
   );
 }
@@ -135,12 +136,14 @@ function Index() {
             <Dash />
           </Col>
         </Row>
-        <Row start="xs" between="sm">
-          <Col xs={6} className="left-col">
-            <Dash />
-            <MenuItem name="calendar" />
-          </Col>
-        </Row>
+        {/*
+            <Row start="xs" between="sm">
+              <Col xs={6} className="left-col">
+                <Dash />
+                <MenuItem name="calendar" />
+              </Col>
+            </Row>
+            */}
       </Container>
     </Page>
   );
@@ -346,6 +349,7 @@ class Weather extends React.Component {
                 <div className="weather-item">
                   <div>lat: {current.coord.lat}</div>
                   <div>lon: {current.coord.lon}</div>
+                  <div>unit: &deg;F</div>
                 </div>
               </div>
             )}

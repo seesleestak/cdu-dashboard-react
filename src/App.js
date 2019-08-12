@@ -13,6 +13,14 @@ function Dash() {
   return <span className="dash">&mdash;</span>;
 }
 
+function Gauge({ value, children }) {
+  return (
+    <div className="gauge">
+      <div className="gauge-temp-cont">{children}</div>
+    </div>
+  );
+}
+
 function Page({ children, ...rest }) {
   return (
     <div className="pg" {...rest}>
@@ -41,7 +49,10 @@ function Temp({ value, size }) {
   return (
     <span className={getTempClass(formatted)} style={{ fontSize: `${size}px` }}>
       {num[0]}
-      <span style={{ fontSize: `${size - 6}px` }}>.{num[1]}</span>
+      <span style={{ fontSize: `${size - 6}px` }}>
+        <span style={{ margin: "0 2px" }}>.</span>
+        {num[1]}
+      </span>
     </span>
   );
 }
@@ -355,18 +366,24 @@ class Weather extends React.Component {
             )}
             {current.main && (
               <div>
-                <Container padding="20px 20px 0 20px">
-                  <Temp size={22} value={current.main.temp} />
-                </Container>
-                <div className="weather-item uppercase">current</div>
                 <Container>
                   <Row center="xs">
                     <Col xs={3} style={{ paddingBottom: "10px" }}>
-                      <Temp size={18} value={current.main.temp_min} />
+                      <Gauge value={current.main.temp}>
+                        <Temp size={22} value={current.main.temp} />
+                      </Gauge>
+                      <div className="weather-item uppercase">current</div>
+                    </Col>
+                    <Col xs={3} style={{ paddingBottom: "10px" }}>
+                      <Gauge value={current.main.temp_min}>
+                        <Temp size={18} value={current.main.temp_min} />
+                      </Gauge>
                       <div className="weather-item uppercase">lo</div>
                     </Col>
                     <Col xs={3}>
-                      <Temp size={18} value={current.main.temp_max} />
+                      <Gauge value={current.main.temp_min}>
+                        <Temp size={18} value={current.main.temp_max} />
+                      </Gauge>
                       <div className="weather-item uppercase">hi</div>
                     </Col>
                   </Row>

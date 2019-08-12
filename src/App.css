@@ -114,3 +114,20 @@ a {
   border: 1px solid white;
   border-radius: 2px;
 }
+
+.gauge {
+  position: relative;
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  margin: 0 34px 8px auto;
+}
+
+.gauge-temp-cont {
+  position: absolute;
+  right: -12px;
+  bottom: -6px;
+  padding: 10px 0 8px 8px;
+  background-color: #121213;
+}

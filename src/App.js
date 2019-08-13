@@ -14,9 +14,27 @@ function Dash() {
 }
 
 function Gauge({ value, children }) {
+  const getNeedlePosition = () => {
+    // Setting gauge limits with assumed min and max temperatures 
+    // for all time, based on local weather
+    const min = 30;
+    const max = 105;
+
+    const inc = 10;
+    const range = (max - min) / inc;
+    for (let i = 0; i <= inc; i++) {
+      if (value >= max - range * i) {
+        return inc - i;
+      }
+      continue;
+    }
+  };
+
   return (
     <div className="gauge">
-      <div className="gauge-temp-cont">{children}</div>
+      <div className={`needle needle-${getNeedlePosition()}`} />
+      <div className="gauge-temp-cont" />
+      <div className="gauge-temp">{children}</div>
     </div>
   );
 }
@@ -336,6 +354,7 @@ class Weather extends React.Component {
   }
 
   componentDidMount() {
+    // Refresh weather info every 10 min
     this.timer = setInterval(this.getWeather(), 600000);
   }
 
@@ -371,30 +390,26 @@ class Weather extends React.Component {
                     <Col xs={3} style={{ paddingBottom: "10px" }}>
                       <Gauge value={current.main.temp}>
                         <Temp size={22} value={current.main.temp} />
+                        <div className="weather-item uppercase">curr</div>
                       </Gauge>
-                      <div className="weather-item uppercase">current</div>
                     </Col>
                     <Col xs={3} style={{ paddingBottom: "10px" }}>
-                      <Gauge value={current.main.temp_min}>
-                        <Temp size={18} value={current.main.temp_min} />
+                      <Gauge value={current.main.temp_max}>
+                        <Temp size={22} value={current.main.temp_max} />
+                        <div className="weather-item uppercase">hi</div>
                       </Gauge>
-                      <div className="weather-item uppercase">lo</div>
                     </Col>
                     <Col xs={3}>
                       <Gauge value={current.main.temp_min}>
-                        <Temp size={18} value={current.main.temp_max} />
+                        <Temp size={22} value={current.main.temp_min} />
+                        <div className="weather-item uppercase">lo</div>
                       </Gauge>
-                      <div className="weather-item uppercase">hi</div>
                     </Col>
                   </Row>
                 </Container>
               </div>
             )}
-            <Container
-              noPadding
-              margin="0 0 20px"
-              style={{ overflowY: "auto" }}
-            >
+            <div className="weather-list-cont">
               {forecast.groupedList &&
                 Object.keys(forecast.groupedList).map((date, dateIndex) => {
                   return (
@@ -414,7 +429,7 @@ class Weather extends React.Component {
                     </Row>
                   );
                 })}
-            </Container>
+            </div>
           </div>
         )}
       </Page>

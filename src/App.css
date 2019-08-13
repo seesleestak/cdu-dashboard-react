@@ -76,6 +76,15 @@ a {
   border-bottom: 1px dashed white;
 }
 
+.weather-list-cont {
+  margin: 0 0 20px;
+  height: 40vh; 
+  overflow-y: auto;
+  padding: 20px;
+  border-top: 1px solid white;
+  border-radius: 2px;
+}
+
 .tl-container {
   height: 20px;
   display: flex;
@@ -121,13 +130,97 @@ a {
   border-radius: 50%;
   height: 75px;
   width: 75px;
-  margin: 0 34px 8px auto;
+  margin: 0 auto 8px;
+}
+
+.needle {
+  position: absolute;
+  height: 4px;
+  border-radius: 2px;
+  width: 28px;
+  bottom: 36px;
+  right: 60px;
+  z-index: 2;
+  background-color: #a7e851;
+}
+
+.needle-0 {
+  transform: rotate(-90deg);
+  bottom: -1px;
+  right: 20px;
+}
+
+.needle-1 {
+  transform: rotate(-63deg);
+  bottom: 4px;
+  right: 38px;
+}
+
+.needle-2 {
+  transform: rotate(-36deg);
+  bottom: 16px;
+  right: 54px;
+}
+
+.needle-3 {
+  transform: rotate(-9deg);
+  bottom: 30px;
+  right: 60px;
+}
+
+.needle-4 {
+  transform: rotate(18deg);
+  bottom: 46px;
+  right: 60px;
+}
+
+.needle-5 {
+  transform: rotate(45deg);
+  bottom: 63px;
+  right: 48px;
+}
+
+.needle-6 {
+  transform: rotate(72deg);
+  bottom: 70px;
+  right: 34px;
+}
+
+.needle-7 {
+  transform: rotate(99deg);
+  bottom: 71px;
+  right: 17px;
+}
+
+.needle-8 {
+  transform: rotate(126deg);
+  bottom: 63px;
+  right: 3px;
+}
+
+.needle-9 {
+  transform: rotate(153deg);
+  bottom: 52px;
+  right: -9px;
+}
+
+.needle-10 {
+  transform: rotate(166deg);
+  bottom: 42px;
+  right: -12px;
+}
+
+.gauge-temp {
+  position: absolute;
+  right: -32px;
+  bottom: -10px;
 }
 
 .gauge-temp-cont {
   position: absolute;
+  height: 50px;
+  width: 45px;
   right: -12px;
   bottom: -6px;
-  padding: 10px 0 8px 12px;
   background-color: #121213;
 }

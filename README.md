@@ -18,6 +18,6 @@ A simple todo list implementation.
 
 ### Weather
 
-![weather screenshot](https://raw.githubusercontent.com/seesleestak/cdu-dashboard-react/master/screen-weather-2.png)
+![weather screenshot](https://raw.githubusercontent.com/seesleestak/cdu-dashboard-react/master/screen-weather.png)
 
 The weather module makes use of [OpenWeather](https://openweathermap.org) for current and forecasted weather data.

@@ -386,7 +386,7 @@ class Weather extends React.Component {
             {current.main && (
               <div>
                 <Container>
-                  <Row center="xs">
+                  <Row around="xs">
                     <Col xs={3} style={{ paddingBottom: "10px" }}>
                       <Gauge value={current.main.temp}>
                         <Temp size={22} value={current.main.temp} />

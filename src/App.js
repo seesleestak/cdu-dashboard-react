@@ -15,17 +15,17 @@ function Dash() {
 
 function Gauge({ value, children }) {
   const getNeedlePosition = () => {
-    // Setting gauge limits with assumed min and max temperatures 
+    // Setting gauge limits with assumed min and max temperatures
     // for all time, based on local weather
     const min = 30;
     const max = 105;
 
-    const inc = 10;
+    const inc = 11;
     const range = (max - min) / inc;
     for (let i = 0; i <= inc; i++) {
       if (value >= max - range * i) {
         return inc - i;
-      }
+      } 
       continue;
     }
   };

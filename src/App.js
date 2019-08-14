@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Frame from 'components/Frame'
+import Frame from "components/Frame";
 
-import Index from 'routes/index'
-import Todo from 'routes/Todo'
-import Weather from 'routes/Weather'
+import Index from "routes/index";
+import Todo from "routes/Todo";
+import Weather from "routes/Weather";
 
 import "./App.css";
 

@@ -1,7 +1,7 @@
-import React from 'react'
-import moment from 'moment'
+import React from "react";
+import moment from "moment";
 
-import Temp from 'components/Temp'
+import Temp from "components/Temp";
 
 export default function Timeline({ timeArr }) {
   return (

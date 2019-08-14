@@ -2,8 +2,8 @@ import React from "react";
 import { Row, Col } from "react-flexbox-grid";
 import Container from "@hixme-ui/container";
 
-import Page from 'components/Page'
-import Dash from 'components/Dash'
+import Page from "components/Page";
+import Dash from "components/Dash";
 
 export default class Todo extends React.Component {
   state = {

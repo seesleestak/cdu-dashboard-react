@@ -1,7 +1,7 @@
-import React from 'react'
-import moment from 'moment'
+import React from "react";
+import moment from "moment";
 
-import Container from '@hixme-ui/container'
+import Container from "@hixme-ui/container";
 
 export default class Time extends React.Component {
   state = {

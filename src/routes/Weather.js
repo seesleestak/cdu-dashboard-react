@@ -5,10 +5,10 @@ import moment from "moment";
 import axios from "axios";
 import groupBy from "lodash/groupBy";
 
-import Gauge from 'components/Gauge'
-import Page from 'components/Page'
-import Temp from 'components/Temp'
-import Timeline from 'components/Timeline'
+import Gauge from "components/Gauge";
+import Page from "components/Page";
+import Temp from "components/Temp";
+import Timeline from "components/Timeline";
 
 export default class Weather extends React.Component {
   state = {

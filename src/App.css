@@ -137,12 +137,13 @@ a {
   position: absolute;
   height: 4px;
   border-radius: 2px;
-  width: 52px;
+  width: 28px;
+  margin-right: 21px;
   bottom: 50%;
   right: 50%;
   z-index: 2;
   background-color: #a7e851;
-  transform-origin: 100%;
+  transform-origin: 175%;
 }
 
 .gauge-temp {

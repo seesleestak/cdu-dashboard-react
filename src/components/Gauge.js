@@ -1,25 +1,26 @@
 import React from "react";
 
 const getNeedlePosition = value => {
-  // Setting gauge limits with assumed min and max temperatures
+  // Gauge limits with estimated min and max temperatures
   // for all time, based on local weather
   const min = 30;
-  const max = 105;
+  const max = 115;
 
-  const inc = 11;
-  const range = (max - min) / inc;
-  for (let i = 0; i <= inc; i++) {
-    if (value >= max - range * i) {
-      return inc - i;
-    }
-    continue;
-  }
+  // Degree position min and max
+  const gaugeMax = 170;
+  const gaugeMin = -90;
+
+  // Linear interpolation with the value
+  return ((value - min) * (gaugeMax - gaugeMin)) / (max - min) + gaugeMin;
 };
 
 export default function Gauge({ value, children }) {
   return (
     <div className="gauge">
-      <div className={`needle needle-${getNeedlePosition(value)}`} />
+      <div
+        style={{ transform: `rotate(${getNeedlePosition(value)}deg)` }}
+        className="needle"
+      />
       <div className="gauge-temp-cont" />
       <div className="gauge-temp">{children}</div>
     </div>

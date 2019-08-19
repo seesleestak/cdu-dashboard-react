@@ -137,77 +137,56 @@ a {
   position: absolute;
   height: 4px;
   border-radius: 2px;
-  width: 28px;
-  bottom: 36px;
-  right: 60px;
+  width: 52px;
+  bottom: 50%;
+  right: 50%;
   z-index: 2;
   background-color: #a7e851;
+  transform-origin: 100%;
 }
 
 .needle-0 {
   transform: rotate(-90deg);
-  bottom: -1px;
-  right: 20px;
 }
 
 .needle-1 {
   transform: rotate(-63deg);
-  bottom: 3px;
-  right: 41px;
 }
 
 .needle-2 {
   transform: rotate(-36deg);
-  bottom: 16px;
-  right: 54px;
 }
 
 .needle-3 {
   transform: rotate(-9deg);
-  bottom: 30px;
-  right: 60px;
 }
 
 .needle-4 {
   transform: rotate(18deg);
-  bottom: 48px;
-  right: 58px;
 }
 
 .needle-5 {
   transform: rotate(45deg);
-  bottom: 63px;
-  right: 48px;
 }
 
 .needle-6 {
   transform: rotate(72deg);
-  bottom: 70px;
-  right: 34px;
 }
 
 .needle-7 {
   transform: rotate(99deg);
-  bottom: 71px;
-  right: 17px;
 }
 
 .needle-8 {
   transform: rotate(126deg);
-  bottom: 63px;
-  right: 3px;
 }
 
 .needle-9 {
   transform: rotate(153deg);
-  bottom: 52px;
-  right: -9px;
 }
 
 .needle-10 {
   transform: rotate(166deg);
-  bottom: 42px;
-  right: -12px;
 }
 
 .gauge-temp {
@@ -219,7 +198,7 @@ a {
 .gauge-temp-cont {
   position: absolute;
   height: 50px;
-  width: 45px;
+  width: 50px;
   right: -12px;
   bottom: -6px;
   background-color: #121213;

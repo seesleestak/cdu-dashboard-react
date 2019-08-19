@@ -145,50 +145,6 @@ a {
   transform-origin: 100%;
 }
 
-.needle-0 {
-  transform: rotate(-90deg);
-}
-
-.needle-1 {
-  transform: rotate(-63deg);
-}
-
-.needle-2 {
-  transform: rotate(-36deg);
-}
-
-.needle-3 {
-  transform: rotate(-9deg);
-}
-
-.needle-4 {
-  transform: rotate(18deg);
-}
-
-.needle-5 {
-  transform: rotate(45deg);
-}
-
-.needle-6 {
-  transform: rotate(72deg);
-}
-
-.needle-7 {
-  transform: rotate(99deg);
-}
-
-.needle-8 {
-  transform: rotate(126deg);
-}
-
-.needle-9 {
-  transform: rotate(153deg);
-}
-
-.needle-10 {
-  transform: rotate(166deg);
-}
-
 .gauge-temp {
   position: absolute;
   right: -32px;

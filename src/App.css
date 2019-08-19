@@ -143,7 +143,7 @@ a {
   right: 50%;
   z-index: 2;
   background-color: #a7e851;
-  transform-origin: 175%;
+  transform-origin: 175% 50%;
 }
 
 .gauge-temp {

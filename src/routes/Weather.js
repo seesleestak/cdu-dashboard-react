@@ -20,12 +20,12 @@ export default class Weather extends React.Component {
   };
 
   getWeather() {
-    this.setState({
-      loading: true
-    });
-
     const { REACT_APP_OPEN_WEATHER_KEY } = process.env;
     if (REACT_APP_OPEN_WEATHER_KEY) {
+      this.setState({
+        loading: true
+      });
+
       Promise.all([
         axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?zip=91367,us&APPID=${REACT_APP_OPEN_WEATHER_KEY}&units=imperial`
@@ -67,6 +67,7 @@ export default class Weather extends React.Component {
   render() {
     const { loading, data } = this.state;
     const { current, forecast } = data;
+    const { REACT_APP_OPEN_WEATHER_KEY } = process.env;
 
     return (
       <Page>
@@ -132,6 +133,12 @@ export default class Weather extends React.Component {
                   );
                 })}
             </div>
+          </div>
+        )}
+        {!REACT_APP_OPEN_WEATHER_KEY && (
+          <div className="weather-warning">
+            OpenWeather API key not found. Get one{" "}
+            <a href="https://openweathermap.org/">here</a>.
           </div>
         )}
       </Page>

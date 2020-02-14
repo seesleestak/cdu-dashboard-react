@@ -50,6 +50,7 @@ input {
 a {
   color: white;
   text-decoration: none;
+  border-bottom: 1px dashed white;
 }
 
 .dash {
@@ -83,6 +84,10 @@ a {
   padding: 20px;
   border-top: 1px solid white;
   border-radius: 2px;
+}
+
+.weather-warning {
+  font-size: 14px;
 }
 
 .tl-container {

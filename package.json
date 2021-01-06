@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@hixme-ui/container": "^1.20.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.0.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
